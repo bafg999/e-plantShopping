@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './CartSlice';
 import './CartItem.css';
+//import { removeItem, increaseItem, updateQuantity } from './CartSlice.';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
@@ -25,21 +25,25 @@ const CartItem = ({ onContinueShopping }) => {
 
 
 
-  const handleIncrement = (item) => {
-    if (CartItem > 0){
+  const handleIncrement = (item,cartitem) => {
+    console.log("si esta entrando al incremento");
+    if (item.quantity > 0){
        dispatch(increaseItem(item));
+       dispatch(updateQuantity(item.quantity));
     }
   };
 
   const handleDecrement = (item) => {
-    if (CartItem > 1){
+    if (item.quantity > 1){
         dispatch(decreaseItem(item));
+        dispatch(updateQuantity(item.quantity));
     }else{
-        dispatch(removeItem);
+        dispatch(removeItem(item));
     }
   };
 
   const handleRemove = (item) => {
+        console.log("No esta borrando");
         dispatch(removeItem(item));
   };
 
