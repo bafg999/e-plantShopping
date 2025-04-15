@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './CartItem.css';
-//import { removeItem, increaseItem, updateQuantity } from './CartSlice.';
+import { removeItem, increaseItem, updateQuantity,decreaseItem } from './CartSlice';
 
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);
+  const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   //const removeItem = removeItem();
   //const updateQuantity = updateQuantity();
@@ -25,11 +25,12 @@ const CartItem = ({ onContinueShopping }) => {
 
 
 
-  const handleIncrement = (item,cartitem) => {
+  const handleIncrement = (item) => {
     console.log("si esta entrando al incremento");
     if (item.quantity > 0){
        dispatch(increaseItem(item));
-       dispatch(updateQuantity(item.quantity));
+       calculateTotalAmount();
+       console.log("No actualiza el precio total por articulo");
     }
   };
 

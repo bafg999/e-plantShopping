@@ -32,11 +32,11 @@ export const CartSlice = createSlice({
         }
     },
     increaseItem: (state, action) => {
-        const itemToIncrease = state.items.find(item => item.name === action.payload);
+        const itemToIncrease = state.items.find(item => item.name === action.payload.name);
       if (itemToIncrease) {
         itemToIncrease.quantity += 1;
+        state.countItems += 1;
       } 
-      state.countItems += 1;
     },
     decreaseItem: (state, action) => {
         const itemToDecrease = state.items.find(item => item.name === action.payload);
