@@ -16,6 +16,7 @@ const CartItem = ({ onContinueShopping }) => {
         total += parseFloat(items.cost.substring(1)) * items.quantity;
       });
       return total;
+      
   };
 
   const handleContinueShopping = (e) => {
@@ -29,8 +30,6 @@ const CartItem = ({ onContinueShopping }) => {
     console.log("si esta entrando al incremento");
     if (item.quantity > 0){
        dispatch(increaseItem(item));
-       calculateTotalAmount();
-       console.log("No actualiza el precio total por articulo");
     }
   };
 
@@ -44,7 +43,6 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
-        console.log("No esta borrando");
         dispatch(removeItem(item));
   };
 
